@@ -1,0 +1,31 @@
+<div >
+  <div class="mb-3">
+    <label class="form-label">Task Name</label>
+    <input type="text" class="form-control" [(ngModel)]="taskDetails.name">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Description</label>
+    <textarea class="form-control" [(ngModel)]="taskDetails.description"></textarea>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Facility</label>
+    <input type="text" class="form-control" [(ngModel)]="taskDetails.description">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Assigned To</label>
+    <input type="text" class="form-control" [(ngModel)]="taskDetails.assignedTo">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Teams</label>
+    <input type="text" class="form-control" [(ngModel)]="taskDetails.assignedTo">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Priority</label>
+    <input type="text" class="form-control" [(ngModel)]="taskDetails.priority">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Due Date</label>
+    <input type="date" class="form-control" [(ngModel)]="taskDetails.dueDate">
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="saveTask()">Submit</button>
+</div>

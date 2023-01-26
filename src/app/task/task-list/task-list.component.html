@@ -1,0 +1,13 @@
+<button type="button" class="btn btn-outline-primary mb-2" (click)="goToAdd()">New</button>
+<ul class="nav nav-pills nav-justified">
+  <li class="nav-item">
+    <a [class]="mytaskClass" aria-current="page" (click)="tabSelect('MyTask')">My Task</a>
+  </li>
+  <li class="nav-item">
+    <a [class]="alltaskClass" (click)="tabSelect('AllTask')">All Tasks</a>
+  </li>
+</ul>
+<div class="mt-4 mx-3">
+<app-task-table [filterType]="taskFilter"></app-task-table>
+</div>
+<router-outlet></router-outlet>

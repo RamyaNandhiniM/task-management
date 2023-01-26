@@ -1,0 +1,14 @@
+.high-overdue-priority{
+  color: crimson;
+  font-weight: 800;
+}
+
+.low-close-priority{
+  color:mediumpurple;
+  font-weight: 800;
+}
+
+.medium-pending-priority{
+  color: coral;
+  font-weight: 800;
+}

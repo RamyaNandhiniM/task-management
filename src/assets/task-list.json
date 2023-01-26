@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "name": "Task 1",
+    "number": "T001",
+    "assignedTo": "RN",
+    "dueDate": "2023-01-18",
+    "assignedOn": "2023-01-08",
+    "status": "Pending",
+    "priority": "Low",
+    "photo": "https://picsum.photos/id/58/50"
+  },
+  {
+    "id": 2,
+    "name": "Task 2",
+    "number": "T002",
+    "assignedTo": "Ramya",
+    "dueDate": "2001-01-18",
+    "assignedOn": "2000-01-07",
+    "status": "Closed",
+    "priority": "Medium",
+    "photo": "https://picsum.photos/id/17/50"
+  },
+  {
+    "id": 3,
+    "name": "Task 3",
+    "number": "T003",
+    "assignedTo": "Ramya Nandhini",
+    "dueDate": "2001-01-18",
+    "assignedOn": "2000-01-07",
+    "status": "Closed",
+    "priority": "High",
+    "photo": "https://picsum.photos/id/27/50"
+  },
+  {
+    "id": 4,
+    "name": "Task 4",
+    "number": "T002",
+    "assignedTo": "Nandhini",
+    "dueDate": "2001-01-18",
+    "assignedOn": "2000-01-07",
+    "status": "Overdue",
+    "priority": "High",
+    "photo": "https://picsum.photos/id/175/50"
+  },
+  {
+    "id": 5,
+    "name": "Task 5",
+    "number": "T003",
+    "assignedTo": "Ramya Nandhini",
+    "dueDate": "2001-01-18",
+    "assignedOn": "2000-01-07",
+    "status": "Closed",
+    "priority": "Low",
+    "photo": "https://picsum.photos/id/237/50"
+  }
+]

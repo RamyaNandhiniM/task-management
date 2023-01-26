@@ -1,0 +1,36 @@
+<div class="input-group mb-3">
+  <input type="text" placeholder="Search by name" [(ngModel)]="searchText">
+  <!-- <button class="btn btn-info" type="button" (click)="filterList()">Find</button> -->
+  <!-- <button class="btn btn-light" type="button" (click)="clearSearch()">Clear</button> -->
+</div>
+<table class="table table-striped table-hover">
+    <thead>
+  <tr>
+    <th><div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [(ngModel)]="showImage">
+      <label class="form-check-label" for="flexSwitchCheckDefault">Show Image</label>
+    </div></th>
+    <th scope="col">Number</th>
+    <th scope="col">Name</th>
+    <th scope="col">Assigned To</th>
+    <th scope="col">Due Date</th>
+    <th scope="col">Assigned On</th>
+    <th scope="col">Status</th>
+    <th scope="col">Priority</th>
+    <th scope="col"></th>
+  </tr>
+    </thead>
+    <tbody>
+  <tr *ngFor="let task of filteredTaskList" >
+    <td><img *ngIf="showImage" [src]="task.photo"></td>
+    <td>{{task.number}}</td>
+    <td>{{task.name | replace:'a':'i'}}</td>
+    <td>{{task.assignedTo}}</td>
+    <td>{{task.dueDate | date:'dd/MM/yyyy'}}</td>
+    <td>{{task.assignedOn | date:'dd/MM/yyyy'}}</td>
+    <td><app-status [text]="task.status" ></app-status></td>
+    <td><app-status [text]="task.priority"></app-status></td>
+    <td><a (click)="goToDetails(task.id)">More...</a></td>
+  </tr>
+  </tbody>
+</table>

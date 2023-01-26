@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-body">
+  <div class="row align-items-start">
+  <label class="col"><b>Name :</b> {{taskDetails?.name}}</label><br/>
+  <label class="col"><b>Number :</b> {{taskDetails?.number}}</label><br/>
+  </div>
+  <div class="row align-items-start">
+  <label class="col"><b>Due Date :</b> {{taskDetails?.dueDate}}</label><br/>
+  <label class="col"><b>Description :</b> {{taskDetails?.name}}</label><br/>
+</div>
+  <div class="row align-items-start">
+  <label class="col"><b>Facility :</b> {{taskDetails?.name}}</label><br/>
+  <label class="col"><b>Asset :</b> {{taskDetails?.assignedOn}}</label><br/>
+</div>
+  <div class="row align-items-start">
+  <label class="col"><b>Asset Location :</b> {{taskDetails?.name}}</label><br/>
+  <label class="col"><b>Assigned To :</b> {{taskDetails?.assignedTo}}</label><br/>
+  </div>
+  <button type="button" class="btn btn-info" (click)="navigateBack()">Back</button>
+</div>
+</div>
+
