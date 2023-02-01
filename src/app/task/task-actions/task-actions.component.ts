@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TaskService } from 'src/app/services/task.service';
-import { ITaskListModel } from 'src/app/shared/task-model';
+import { ITaskListModal } from 'src/app/shared/task-modal';
 
 @Component({
   selector: 'app-task-actions',
@@ -13,8 +13,9 @@ export class TaskActionsComponent implements OnInit {
   constructor(private taskService: TaskService, private route: Router) { }
 
   ngOnInit(): void {
+    this.taskService.getFacilities().subscribe((res) => this.facilityList = res);
   }
-  taskDetails: ITaskListModel = {
+  taskDetails: ITaskListModal = {
     id: 0,
     name: '',
     number: '',
@@ -22,10 +23,15 @@ export class TaskActionsComponent implements OnInit {
     dueDate: '',
     assignedOn: '',
     status: '',
-    priority: ''
+    priority: {
+      id: '',
+      name: ''
+    }
   }
+  facilityList = [];
   saveTask() {
     this.taskService.addTask(this.taskDetails);
     this.route.navigate(['task/list']);
   }
+
 }

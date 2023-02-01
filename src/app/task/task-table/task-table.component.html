@@ -29,7 +29,7 @@
     <td>{{task.dueDate | date:'dd/MM/yyyy'}}</td>
     <td>{{task.assignedOn | date:'dd/MM/yyyy'}}</td>
     <td><app-status [text]="task.status" ></app-status></td>
-    <td><app-status [text]="task.priority"></app-status></td>
+    <td><app-status [text]="task.priority.name"></app-status></td>
     <td><a (click)="goToDetails(task.id)">More...</a></td>
   </tr>
   </tbody>

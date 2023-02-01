@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ITaskListModel } from 'src/app/shared/task-model';
 
 import { Router } from '@angular/router';
 import { TaskService } from 'src/app/services/task.service';
+import { ITaskListModal } from 'src/app/shared/task-modal';
 
 @Component({
   selector: 'app-task-table',
@@ -24,11 +24,11 @@ export class TaskTableComponent implements OnInit {
   @Input()
   filterType: string = "MyTask";
 
-  get taskList(): ITaskListModel[] {
+  get taskList(): ITaskListModal[] {
     return this.taskService.taskList;
   }
 
-  get filteredTaskList(): ITaskListModel[] {
+  get filteredTaskList(): ITaskListModal[] {
     if (this.filterType == "MyTask") return this.taskList.filter(x => x.name.includes(this.searchText)
       && x.assignedTo == this.userName);
     return this.taskList.filter(x => x.name.includes(this.searchText));
@@ -36,7 +36,6 @@ export class TaskTableComponent implements OnInit {
 
   clearSearch(): void {
     this.searchText = "";
-
   }
   goToDetails(id: number): void {
     this.router.navigate(['/task/details', { id: id }])

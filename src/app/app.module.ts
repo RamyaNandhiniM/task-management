@@ -11,7 +11,9 @@ import { TaskTableComponent } from './task/task-table/task-table.component';
 import { TaskDetailsComponent } from './task/task-details/task-details.component';
 import { TaskPageComponent } from './task/task-page.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TaskActionsComponent } from './task/task-actions/task-actions.component'
+import { TaskActionsComponent } from './task/task-actions/task-actions.component';
+import { HomeComponent } from './home/home.component';
+import { MenuComponent } from './menu/menu.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { TaskActionsComponent } from './task/task-actions/task-actions.component
     TaskTableComponent,
     TaskDetailsComponent,
     TaskPageComponent,
-    TaskActionsComponent
+    TaskActionsComponent,
+    HomeComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

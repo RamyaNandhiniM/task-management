@@ -1,0 +1,3 @@
+<ul>
+  <li *ngFor="let item of menuItems" [id]="item.id" (click)="onClick(item.id)"><a>{{item.name}}</a></li>
+</ul>

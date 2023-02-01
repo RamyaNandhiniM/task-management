@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from 'src/app/services/task.service';
-import { ITaskListModel } from 'src/app/shared/task-model';
+import { ITaskListModal } from 'src/app/shared/task-modal';
 
 @Component({
   selector: 'app-task-details',
@@ -14,7 +14,7 @@ export class TaskDetailsComponent implements OnInit {
     this.taskDetails = this.taskService.getTaskById(Number(this.route.snapshot.paramMap.get('id')))
   }
 
-  taskDetails: ITaskListModel | undefined = {
+  taskDetails: ITaskListModal | undefined = {
     id: 0,
     name: '',
     number: '',
@@ -22,7 +22,10 @@ export class TaskDetailsComponent implements OnInit {
     dueDate: '',
     assignedOn: '',
     status: '',
-    priority: ''
+    priority: {
+      id: '',
+      name: ''
+    }
   }
 
   ngOnInit(): void {
