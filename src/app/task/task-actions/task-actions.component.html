@@ -9,26 +9,52 @@
   </div>
   <div class="mb-3">
     <label class="form-label">Facility</label>
-    <select class="form-select form-select-lg mb-3" [(ngModel)]="taskDetails.facility">
-      <option selected>Select</option>
+    <select class="form-select form-select-lg mb-3" [(ngModel)]="taskDetails.facilityId">
       <option *ngFor="let facility of facilityList" [value]="facility.id">{{facility.name}}</option>
     </select>
   </div>
   <div class="mb-3">
+    <label class="form-label">Assets</label>
+    <select class="form-select" size="3" [(ngModel)]="taskDetails.AssetId">
+      <option *ngFor="let asset of assetList" [value]="asset.assetId">{{asset.assetName}}</option>
+    </select>
+  </div>
+  <div class="mb-3">
     <label class="form-label">Assigned To</label>
-    <input type="text" class="form-control" [(ngModel)]="taskDetails.assignedTo">
+    <select class="form-select" multiple size="3" [(ngModel)]="taskDetails.assignedMembers">
+      <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
+    </select>
   </div>
   <div class="mb-3">
     <label class="form-label">Teams</label>
-    <input type="text" class="form-control" [(ngModel)]="taskDetails.assignedTo">
+    <select class="form-select" multiple size="3" [(ngModel)]="taskDetails.assignedTeams">
+      <option *ngFor="let team of teams" [value]="team.id">{{team.name}}</option>
+    </select>
   </div>
   <div class="mb-3">
     <label class="form-label">Priority</label>
-    <input type="text" class="form-control" [(ngModel)]="taskDetails.priority">
+    <select class="form-select form-select-lg mb-3" [(ngModel)]="taskDetails.priority">
+      <option value=1>High</option>
+  <option value=2>Medium</option>
+  <option value=3>Low</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Type</label>
+    <select class="form-select form-select-lg mb-3" [(ngModel)]="taskDetails.typeId">
+      <option *ngFor="let type of taskTypes" [value]="type.id">{{type.name}}</option>
+    </select>
   </div>
   <div class="mb-3">
     <label class="form-label">Due Date</label>
     <input type="date" class="form-control" [(ngModel)]="taskDetails.dueDate">
   </div>
+  <div class="mb-3">
+    <label class="form-label">Remainder</label>
+    <select class="form-select form-select-lg mb-3" [(ngModel)]="taskDetails.remainder">
+      <option *ngFor="let remainder of remainders" [value]="remainder.id">{{remainder.name}}</option>
+    </select>
+  </div>
+ 
   <button type="submit" class="btn btn-primary" (click)="saveTask()">Submit</button>
 </div>

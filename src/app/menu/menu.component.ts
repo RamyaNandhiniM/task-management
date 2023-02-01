@@ -17,7 +17,8 @@ export class MenuComponent implements OnInit {
     {
       id: "home",
       name: "Home",
-      path: "home"
+      path: "home",
+      class: "active"
     },
     {
       id: "tasks",
@@ -25,23 +26,16 @@ export class MenuComponent implements OnInit {
       path: "task/list"
     }
   ]
+  // get menu(): IMenuItemModal[] {
+  //   console.log(this.route.getCurrentNavigation())
+  //   return this.menuItems;
+  // }
   onClick(id: string) {
     const menuItem = this.menuItems.find(x => x.id == id);
-
-    //let listElements = document!.getElementsByTagName('ul');
-
-    // if (listElements != null) {
-    //   for (let i = 0; i < listElements.length; i++) {
-    //     if (listElements.item(i) != null) {
-    //       listElements.item(i).className = '';
-    //     }
-    //   }
-    // }
-
-    // console.log(listElements)
-    // let menuIdEle = document.getElementById(id);
-    // if (menuIdEle != null) menuIdEle.className = 'active'
-    console.log(menuItem.path)
+    this.menuItems.forEach((item) => {
+      item.class = '';
+    })
+    menuItem.class = 'active';
     this.route.navigate([menuItem.path]);
   }
 }

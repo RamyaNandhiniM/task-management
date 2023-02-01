@@ -1,18 +1,70 @@
 export interface ITaskListModal {
-  id: number,
-  name: string,
-  number: string,
-  assignedTo: string,
-  dueDate: string,
-  assignedOn: string,
-  status: string,
-  priority: IdNamePair,
-  photo?: string,
-  description?: string,
-  facility?: string
+  "id": string,
+  "name": string,
+  "taskNumber": string,
+  "description": string,
+  assignedTo: {
+    users: IdNamePair[],
+    teams: IdNamePair[]
+  },
+  "dueDate": Date,
+  "featureId": string,
+  "featureName": string,
+  "status": string,
+  "imgLink": string,
+  "fileName": string,
+  "taskType": string,
+  "priority": IdNamePair,
+  "hasRecurrence": boolean,
+  "completedDateTime": Date,
+  "createdDateTime": Date
 }
 
-interface IdNamePair {
+export interface IdNamePair {
   id: string,
   name: string
+}
+
+export interface ITaskDetailsModal {
+  "id": string,
+  "name": string,
+  "number": string,
+  "description": string,
+  "assignedTo": {
+    "users": IdNamePair[],
+    "teams": IdNamePair[]
+  },
+  "facility": IdNamePair,
+  "asset": IdNamePair,
+  "status": string,
+  "type": IdNamePair,
+  "priority": IdNamePair,
+  "remainder": IdNamePair,
+  "dueDate": Date,
+  "rrule": null,
+  "featureName": string,
+  "featureTitle": string,
+  "featureId": string,
+  "subFeatureId": string,
+  "subTasks": [],
+  "assignedBy": IdNamePair,
+  "assignedOn": Date,
+  "checkListId": string,
+  "checkListFieldValues": {}
+}
+
+export interface ITaskPayloadModal {
+  "name": string,
+  "description": string,
+  "assignedMembers": string[],
+  "assignedTeams": string[],
+  "facilityId": string,
+  "typeId": number,
+  "priority": number,
+  "remainder": number,
+  "dueDate": Date,
+  "subTasks": [],
+  "rRuleString": null,
+  "checkListFieldValues": {},
+  AssetId: string
 }

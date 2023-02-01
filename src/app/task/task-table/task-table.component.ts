@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { TaskService } from 'src/app/services/task.service';
-import { ITaskListModal } from 'src/app/shared/task-modal';
+import { IdNamePair, ITaskListModal } from 'src/app/shared/task-modal';
 
 @Component({
   selector: 'app-task-table',
@@ -11,7 +11,11 @@ import { ITaskListModal } from 'src/app/shared/task-modal';
 })
 export class TaskTableComponent implements OnInit {
 
-  constructor(private router: Router, private taskService: TaskService) { }
+  constructor(private router: Router, private taskService: TaskService) {
+    this.taskService.getTasks().subscribe((res) => {
+      this.taskList = res
+    })
+  }
 
   ngOnInit(): void {
 
@@ -19,25 +23,31 @@ export class TaskTableComponent implements OnInit {
   searchText = "";
 
   showImage = false;
-  userName = "Ramya Nandhini";
+  userName = "Remya Nandhini";
 
   @Input()
   filterType: string = "MyTask";
 
-  get taskList(): ITaskListModal[] {
-    return this.taskService.taskList;
-  }
+  taskList: ITaskListModal[] = []
 
   get filteredTaskList(): ITaskListModal[] {
     if (this.filterType == "MyTask") return this.taskList.filter(x => x.name.includes(this.searchText)
-      && x.assignedTo == this.userName);
+      && x.assignedTo.users.some(x => x.name == this.userName)
+    );
     return this.taskList.filter(x => x.name.includes(this.searchText));
   }
 
   clearSearch(): void {
     this.searchText = "";
   }
-  goToDetails(id: number): void {
+  goToDetails(id: string): void {
     this.router.navigate(['/task/details', { id: id }])
+  }
+  getUsers(users: IdNamePair[]): string {
+    let usernames = '';
+    users.forEach(element => {
+      usernames = usernames.concat(element.name, ',')
+    });
+    return usernames.replace(/,(\s+)?$/, "");
   }
 }

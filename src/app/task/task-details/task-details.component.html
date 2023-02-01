@@ -1,22 +1,54 @@
 <div class="card">
   <div class="card-body">
-  <div class="row align-items-start">
-  <label class="col"><b>Name :</b> {{taskDetails?.name}}</label><br/>
-  <label class="col"><b>Number :</b> {{taskDetails?.number}}</label><br/>
+    <div class="row align-items-start">
+      <label class="col"><b>Name :</b> {{taskDetails?.name}}</label><br />
+      <label class="col"><b>Number :</b> {{taskDetails?.number}}</label><br />
+    </div>
+    <label class="col"><b>Description :</b> {{taskDetails?.name}}</label><br />
   </div>
-  <div class="row align-items-start">
-  <label class="col"><b>Due Date :</b> {{taskDetails?.dueDate}}</label><br/>
-  <label class="col"><b>Description :</b> {{taskDetails?.name}}</label><br/>
 </div>
-  <div class="row align-items-start">
-  <label class="col"><b>Facility :</b> {{taskDetails?.name}}</label><br/>
-  <label class="col"><b>Asset :</b> {{taskDetails?.assignedOn}}</label><br/>
-</div>
-  <div class="row align-items-start">
-  <label class="col"><b>Asset Location :</b> {{taskDetails?.name}}</label><br/>
-  <label class="col"><b>Assigned To :</b> {{taskDetails?.assignedTo}}</label><br/>
+<div class="card mt-2">
+  <div class="card-body">
+    <div class="row align-items-start">
+      <label class="col"><b>Facility :</b> {{taskDetails?.facility?.name}}</label><br />
+      <label class="col"><b>Asset :</b> {{taskDetails?.asset?.name}}</label><br />
+    </div>
+    <!-- <label class="col"><b>Asset Location :</b> {{taskDetails?.name}}</label><br /> -->
   </div>
-  <button type="button" class="btn btn-info" (click)="navigateBack()">Back</button>
 </div>
+<div class="card mt-2">
+  <div class="card-body">
+    <label class="col"><b>Assigned To :</b></label><br />
+    <div class="row align-items-start">
+      <label  class="col"><b>User(s) :</b></label><br />
+      <ol class="mx-3">
+        <li *ngFor="let user of taskDetails.assignedTo.users">{{user.name}}</li>
+      </ol>
+      <label  class="col"><b>Team(s) :</b></label><br />
+      <ol class="mx-3">
+        <li *ngFor="let team of taskDetails.assignedTo.teams">{{team.name}}</li>
+      </ol>
+    </div>
+  </div>
 </div>
-
+<div class="card mt-2">
+  <div class="card-body">
+    <div class="row align-items-start">
+      <label class="col"><b>Assigned By :</b> {{taskDetails?.assignedBy?.name}}</label><br />
+      <label class="col"><b>Assigned On :</b> {{taskDetails?.assignedOn | date:'dd/MM/yyyy'}}</label><br />
+    </div>
+  </div>
+</div>
+<div class="card mt-2">
+  <div class="card-body">
+    <div class="row align-items-start">
+      <label class="col"><b>Status :</b> {{taskDetails?.status}}</label><br />
+      <label class="col"><b>Priority :</b> {{taskDetails?.priority?.name}}</label><br />
+    </div>
+    <div class="row align-items-start">
+      <label class="col"><b>Type :</b> {{taskDetails?.type?.name}}</label><br />
+      <label class="col"><b>Due Date :</b> {{taskDetails?.dueDate | date:'dd/MM/yyyy'}}</label><br />
+    </div>
+  </div>
+</div>
+<button type="button" class="btn btn-info mt-2" (click)="navigateBack()">Back</button>

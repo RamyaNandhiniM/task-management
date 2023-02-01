@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from 'src/app/services/task.service';
-import { ITaskListModal } from 'src/app/shared/task-modal';
+import { ITaskDetailsModal, ITaskListModal } from 'src/app/shared/task-modal';
 
 @Component({
   selector: 'app-task-details',
@@ -11,21 +11,37 @@ import { ITaskListModal } from 'src/app/shared/task-modal';
 export class TaskDetailsComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private taskService: TaskService) {
-    this.taskDetails = this.taskService.getTaskById(Number(this.route.snapshot.paramMap.get('id')))
+    this.taskService.getTaskById(this.route.snapshot.paramMap.get('id')).subscribe((res) => {
+      this.taskDetails = res;
+    })
   }
 
-  taskDetails: ITaskListModal | undefined = {
-    id: 0,
+  taskDetails: ITaskDetailsModal | undefined = {
+    id: '',
     name: '',
     number: '',
-    assignedTo: '',
-    dueDate: '',
-    assignedOn: '',
+    description: '',
+    assignedTo: {
+      users: [],
+      teams: []
+    },
+    facility: undefined,
+    asset: undefined,
     status: '',
-    priority: {
-      id: '',
-      name: ''
-    }
+    type: undefined,
+    priority: undefined,
+    remainder: undefined,
+    dueDate: undefined,
+    rrule: null,
+    featureName: '',
+    featureTitle: '',
+    featureId: '',
+    subFeatureId: '',
+    subTasks: [],
+    assignedBy: undefined,
+    assignedOn: undefined,
+    checkListId: '',
+    checkListFieldValues: undefined
   }
 
   ngOnInit(): void {
