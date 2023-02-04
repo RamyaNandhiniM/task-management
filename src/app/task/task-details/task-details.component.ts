@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from 'src/app/services/task.service';
+import { IFileLinkModal, IFilesModal } from 'src/app/shared/files-modal';
 import { ITaskDetailsModal, ITaskListModal } from 'src/app/shared/task-modal';
 
 @Component({
@@ -11,11 +12,15 @@ import { ITaskDetailsModal, ITaskListModal } from 'src/app/shared/task-modal';
 export class TaskDetailsComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private taskService: TaskService) {
-    this.taskService.getTaskById(this.route.snapshot.paramMap.get('id')).subscribe((res) => {
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.taskService.getTaskById(this.id).subscribe((res) => {
       this.taskDetails = res;
     })
+    this.taskService.getFiles(this.id).subscribe((res) => {
+      this.taskFiles = res;
+    })
   }
-
+  id: string = '';
   taskDetails: ITaskDetailsModal | undefined = {
     id: '',
     name: '',
@@ -43,11 +48,17 @@ export class TaskDetailsComponent implements OnInit {
     checkListId: '',
     checkListFieldValues: undefined
   }
-
+  taskFiles: IFilesModal[] = [];
   ngOnInit(): void {
   }
 
-  navigateBack() {
+  navigateBack(): void {
     this.router.navigate(['/task/list'])
+  }
+  navigateToEdit(): void {
+    this.router.navigate(['/task/edit', { id: this.id }])
+  }
+  toggleMenu() {
+    document.getElementById("dropdown-items").classList.toggle("show")
   }
 }

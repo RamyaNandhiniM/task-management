@@ -27,6 +27,9 @@ const routes: Routes = [
       },
       {
         path: 'add', component: TaskActionsComponent
+      },
+      {
+        path: 'edit', component: TaskActionsComponent
       }
     ]
   }];

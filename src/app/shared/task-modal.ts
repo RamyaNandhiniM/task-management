@@ -24,6 +24,10 @@ export interface IdNamePair {
   id: string,
   name: string
 }
+export interface NumIdNamePair {
+  id: number,
+  name: string
+}
 
 export interface ITaskDetailsModal {
   "id": string,
@@ -37,9 +41,9 @@ export interface ITaskDetailsModal {
   "facility": IdNamePair,
   "asset": IdNamePair,
   "status": string,
-  "type": IdNamePair,
-  "priority": IdNamePair,
-  "remainder": IdNamePair,
+  "type": NumIdNamePair,
+  "priority": NumIdNamePair,
+  "remainder": NumIdNamePair,
   "dueDate": Date,
   "rrule": null,
   "featureName": string,
@@ -54,6 +58,7 @@ export interface ITaskDetailsModal {
 }
 
 export interface ITaskPayloadModal {
+  id?: string
   "name": string,
   "description": string,
   "assignedMembers": string[],

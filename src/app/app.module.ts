@@ -6,14 +6,15 @@ import { ReplacePipe } from 'src/app/shared/ReplacePipe';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TaskListComponent } from './task/task-list/task-list.component';
-import { StatusComponent } from './status/status.component';
+import { StatusComponent } from './shared/status/status.component';
 import { TaskTableComponent } from './task/task-table/task-table.component';
 import { TaskDetailsComponent } from './task/task-details/task-details.component';
 import { TaskPageComponent } from './task/task-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskActionsComponent } from './task/task-actions/task-actions.component';
 import { HomeComponent } from './home/home.component';
-import { MenuComponent } from './menu/menu.component'
+import { MenuComponent } from './menu/menu.component';
+import { ModalComponent } from './shared/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MenuComponent } from './menu/menu.component'
     TaskPageComponent,
     TaskActionsComponent,
     HomeComponent,
-    MenuComponent
+    MenuComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

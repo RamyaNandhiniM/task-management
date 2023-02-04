@@ -40,10 +40,17 @@
     </select>
   </div>
   <div class="mb-3">
+    <div>
     <label class="form-label">Type</label>
     <select class="form-select form-select-lg mb-3" [(ngModel)]="taskDetails.typeId">
       <option *ngFor="let type of taskTypes" [value]="type.id">{{type.name}}</option>
     </select>
+    </div>
+    <div>
+      <span class="material-symbols-outlined" (click)="openDialog()">
+        add_box
+      </span>
+    </div>
   </div>
   <div class="mb-3">
     <label class="form-label">Due Date</label>

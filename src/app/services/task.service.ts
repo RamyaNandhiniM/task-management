@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { IFilesModal } from "../shared/files-modal";
 import { ITaskDetailsModal, ITaskListModal, ITaskPayloadModal } from "../shared/task-modal";
 
 @Injectable({
@@ -9,7 +10,7 @@ import { ITaskDetailsModal, ITaskListModal, ITaskPayloadModal } from "../shared/
 export class TaskService {
   endpoint: string = 'https://api-qa.faciliteasy.com/api/v1/Tasks?OnlyMyTasks=false&page=1'
   taskList: ITaskListModal[] = []
-  token = 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Im9RM21mcEFPb0VTY2NxMDZINUZGSEEiLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE2NzUyNzM5MTksImV4cCI6MTY3NTI3NzUxOSwiaXNzIjoiaHR0cHM6Ly9pZHAtcWEuZmFjaWxpdGVhc3kuY29tIiwiYXVkIjoiZmFjaWx0ZWFzeV9hcGkiLCJjbGllbnRfaWQiOiJyZWFjdF9zaXRlIiwic3ViIjoiNWFkMGY0Y2QtZjlmYS00ODY5LWFhM2MtMDhkOGZiMGQ5MTA2IiwiYXV0aF90aW1lIjoxNjc1MTg2MDk5LCJpZHAiOiJsb2NhbCIsInVzZXJfbmFtZSI6InJhbXlhbmFuZGhpbmkxOTk5QGdtYWlsLmNvbSIsImVtYWlsIjoicmFteWFuYW5kaGluaTE5OTlAZ21haWwuY29tIiwic2NvcGUiOlsiZmFjaWx0ZWFzeV9hcGkiLCJvZmZsaW5lX2FjY2VzcyJdLCJhbXIiOlsicHdkIl19.MxYp5eWe9fSSCjTDs2Ontt-mpyXa6Q5qHUYkjPO_wjKCPF4ykvlX0BoR9OZZk5E2fp85HrzirT1kvQnttbtfXFooYZUGsgGqMYM_2q1UfrvraTfnj8EADIs-S_MpRr4BbKGk3Uym5FjgsX-SSyvW9l5rzt17I-EgRvz8297R9BqgN0MdNeykYbyXMK_64o21tQ_LuridhUn7Uh01iAd5VA7JyFVWvMMoEI8uny2N5z6eH2mUWfzchgYCjnY4-41NCXLSiuYep4y-y8MAIYBOD3v2KKv5NaHCMDuxMtfYus14TC5ykS_qyMGzaXPlinCq_H_DQ8iIo1J0QJNhxkeYIQ'
+  token = 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Im9RM21mcEFPb0VTY2NxMDZINUZGSEEiLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE2NzU1MjQ2ODMsImV4cCI6MTY3NTUyODI4MywiaXNzIjoiaHR0cHM6Ly9pZHAtcWEuZmFjaWxpdGVhc3kuY29tIiwiYXVkIjoiZmFjaWx0ZWFzeV9hcGkiLCJjbGllbnRfaWQiOiJyZWFjdF9zaXRlIiwic3ViIjoiZTUyMjAyYTktN2NmNS00NzVjLWEyM2QtMmRmNGUwZGEyNjEzIiwiYXV0aF90aW1lIjoxNjc1Mjc2Nzk5LCJpZHAiOiJsb2NhbCIsInVzZXJfbmFtZSI6InJhbXlhbmFuZGhpbmkubXVyYWxpZGhhcmFuQGthc2FkYXJhdGVjaC5jb20iLCJlbWFpbCI6InJhbXlhbmFuZGhpbmkubXVyYWxpZGhhcmFuQGthc2FkYXJhdGVjaC5jb20iLCJzY29wZSI6WyJmYWNpbHRlYXN5X2FwaSIsIm9mZmxpbmVfYWNjZXNzIl0sImFtciI6WyJwd2QiXX0.i5JH8h_hLLagAVMFn_VvU2va4UZGXHCEFOt74ZEyBGokuMof_u4cjfwjcvmtopwsE3VxnXAx4CXQ_1JjsHiqaygBV9_wQV4Q3I6tfZfb1vTzKbyGQO4V7gMwROjZzbDKm72Wjyv7bQJDBGwrAmSe9iHE-_wy2Byvlktj8hJHbPBrFGKc1fUa36DcSXqIIANsSUnoE02FmYYACuHmYhnp6v4obd9-IqyL0xbZaowltEPyo-5Q4dIjQXTyRmWrI7YQXADF4-J8fKYu7gjPqt8fD23XQpDR56maH9BM-zQieTuLOkha21lidvuveyfSfUnL2N78XUFai7IZ_NUE12FXhQ'
   org_id = 'ff58144e-18b0-4244-a67e-15cada9ffd41'
 
   constructor(private http: HttpClient) {
@@ -24,6 +25,7 @@ export class TaskService {
       }
     });
   }
+
   getTaskById(id: string): Observable<ITaskDetailsModal> {
     return this.http.get<ITaskDetailsModal>('https://api-qa.faciliteasy.com/api/v1/Tasks/'.concat(id), {
       headers: {
@@ -32,6 +34,16 @@ export class TaskService {
       }
     })
   }
+
+  getFiles(id: string): Observable<IFilesModal[]> {
+    return this.http.get<IFilesModal[]>('https://api-qa.faciliteasy.com/api/v1/tasks/'.concat(id, "/files"), {
+      headers: {
+        authorization: this.token,
+        org_id: this.org_id
+      }
+    })
+  }
+
   addTask(payload: ITaskPayloadModal): Observable<ITaskPayloadModal> {
     return this.http.post<ITaskPayloadModal>('https://api-qa.faciliteasy.com/api/v1/Tasks', payload, {
       headers: {
@@ -40,6 +52,16 @@ export class TaskService {
       }
     })
   }
+
+  update(id: string, payload: ITaskPayloadModal): Observable<ITaskPayloadModal> {
+    return this.http.put<ITaskPayloadModal>('https://api-qa.faciliteasy.com/api/v1/Tasks/'.concat(id), payload, {
+      headers: {
+        authorization: this.token,
+        org_id: this.org_id
+      }
+    })
+  }
+
   getFacilities() {
     return this.http.get<ITaskListModal[]>('https://api-qa.faciliteasy.com/api/v1/Facilities?includeSubLocations=false', {
       headers: {
@@ -48,6 +70,7 @@ export class TaskService {
       }
     });
   }
+
   getAssests() {
     return this.http.get<ITaskListModal[]>('https://api-qa.faciliteasy.com/api/v1/Assets?page=1', {
       headers: {
@@ -56,6 +79,7 @@ export class TaskService {
       }
     });
   }
+
   getRemainders() {
     return this.http.get<ITaskListModal[]>('https://api-qa.faciliteasy.com/api/v1/Masters/ExpirationAlerts', {
       headers: {
@@ -64,6 +88,7 @@ export class TaskService {
       }
     });
   }
+
   getTaskTypes() {
     return this.http.get<ITaskListModal[]>('https://api-qa.faciliteasy.com/api/v1/Masters/TaskTypes', {
       headers: {
@@ -72,6 +97,7 @@ export class TaskService {
       }
     });
   }
+
   getTeams() {
     return this.http.get<ITaskListModal[]>('https://idp-qa.faciliteasy.com/api/teams', {
       headers: {
@@ -80,6 +106,7 @@ export class TaskService {
       }
     });
   }
+
   getUsers() {
     return this.http.get<ITaskListModal[]>('https://idp-qa.faciliteasy.com/api/users', {
       headers: {
@@ -88,6 +115,7 @@ export class TaskService {
       }
     });
   }
+
   getCheckList() {
     return this.http.get<ITaskListModal[]>('https://api-qa.faciliteasy.com/api/v1/CheckList', {
       headers: {

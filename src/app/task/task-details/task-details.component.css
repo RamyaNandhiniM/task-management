@@ -1,0 +1,9 @@
+.show{
+  display: block;
+}
+
+.menu-align-right{
+
+  position: fixed;
+  display: inline;
+}
