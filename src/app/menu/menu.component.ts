@@ -18,12 +18,16 @@ export class MenuComponent implements OnInit {
       id: "home",
       name: "Home",
       path: "home",
-      class: "active"
+      class: "active",
+      iconClass: "material-symbols-outlined",
+      iconName: "home"
     },
     {
       id: "tasks",
       name: "Tasks",
-      path: "task/list"
+      path: "task/list",
+      iconClass: "material-symbols-outlined",
+      iconName: "task"
     }
   ]
   // get menu(): IMenuItemModal[] {

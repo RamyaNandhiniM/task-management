@@ -10,7 +10,7 @@ import { ITaskDetailsModal, ITaskListModal, ITaskPayloadModal } from "../shared/
 export class TaskService {
   endpoint: string = 'https://api-qa.faciliteasy.com/api/v1/Tasks?OnlyMyTasks=false&page=1'
   taskList: ITaskListModal[] = []
-  token = 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Im9RM21mcEFPb0VTY2NxMDZINUZGSEEiLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE2NzU1MjQ2ODMsImV4cCI6MTY3NTUyODI4MywiaXNzIjoiaHR0cHM6Ly9pZHAtcWEuZmFjaWxpdGVhc3kuY29tIiwiYXVkIjoiZmFjaWx0ZWFzeV9hcGkiLCJjbGllbnRfaWQiOiJyZWFjdF9zaXRlIiwic3ViIjoiZTUyMjAyYTktN2NmNS00NzVjLWEyM2QtMmRmNGUwZGEyNjEzIiwiYXV0aF90aW1lIjoxNjc1Mjc2Nzk5LCJpZHAiOiJsb2NhbCIsInVzZXJfbmFtZSI6InJhbXlhbmFuZGhpbmkubXVyYWxpZGhhcmFuQGthc2FkYXJhdGVjaC5jb20iLCJlbWFpbCI6InJhbXlhbmFuZGhpbmkubXVyYWxpZGhhcmFuQGthc2FkYXJhdGVjaC5jb20iLCJzY29wZSI6WyJmYWNpbHRlYXN5X2FwaSIsIm9mZmxpbmVfYWNjZXNzIl0sImFtciI6WyJwd2QiXX0.i5JH8h_hLLagAVMFn_VvU2va4UZGXHCEFOt74ZEyBGokuMof_u4cjfwjcvmtopwsE3VxnXAx4CXQ_1JjsHiqaygBV9_wQV4Q3I6tfZfb1vTzKbyGQO4V7gMwROjZzbDKm72Wjyv7bQJDBGwrAmSe9iHE-_wy2Byvlktj8hJHbPBrFGKc1fUa36DcSXqIIANsSUnoE02FmYYACuHmYhnp6v4obd9-IqyL0xbZaowltEPyo-5Q4dIjQXTyRmWrI7YQXADF4-J8fKYu7gjPqt8fD23XQpDR56maH9BM-zQieTuLOkha21lidvuveyfSfUnL2N78XUFai7IZ_NUE12FXhQ'
+  token = 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Im9RM21mcEFPb0VTY2NxMDZINUZGSEEiLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE2NzU2MDkzNDEsImV4cCI6MTY3NTYxMjk0MSwiaXNzIjoiaHR0cHM6Ly9pZHAtcWEuZmFjaWxpdGVhc3kuY29tIiwiYXVkIjoiZmFjaWx0ZWFzeV9hcGkiLCJjbGllbnRfaWQiOiJyZWFjdF9zaXRlIiwic3ViIjoiZTUyMjAyYTktN2NmNS00NzVjLWEyM2QtMmRmNGUwZGEyNjEzIiwiYXV0aF90aW1lIjoxNjc1Mjc2Nzk5LCJpZHAiOiJsb2NhbCIsInVzZXJfbmFtZSI6InJhbXlhbmFuZGhpbmkubXVyYWxpZGhhcmFuQGthc2FkYXJhdGVjaC5jb20iLCJlbWFpbCI6InJhbXlhbmFuZGhpbmkubXVyYWxpZGhhcmFuQGthc2FkYXJhdGVjaC5jb20iLCJzY29wZSI6WyJmYWNpbHRlYXN5X2FwaSIsIm9mZmxpbmVfYWNjZXNzIl0sImFtciI6WyJwd2QiXX0.QceDHTVqrmm54-Sc60GpN5Cmzg6L8zV7kDzjqQ5NRiszXU1av_w9DNL4V5ZSTpOW3nUu4IDD6Rf2tcveZ2ywvD_IqSYy94CcHV9GxUdOWIYmGw-n6PX5WIDyIq3phfMjOLW9x2MlE40clqeQLBUR430iGEuQ91QicQsknEIdDXm8TScL9bT4n3PddWFz7xHkVr9xbdzmgtBOgjlhDaubyS_u5b1cuV6fRP8K4DdlcOgKh5OSnaBcwqTgg_KhwpAq-6HZEs4QNS_HrqIcIV5bMLxr7EcOe50vswV56on_v1P4-aQKp_fGH1i8AVfgN74FrhoyRXwAp5YT0j9Pw944jg'
   org_id = 'ff58144e-18b0-4244-a67e-15cada9ffd41'
 
   constructor(private http: HttpClient) {
@@ -80,24 +80,6 @@ export class TaskService {
     });
   }
 
-  getRemainders() {
-    return this.http.get<ITaskListModal[]>('https://api-qa.faciliteasy.com/api/v1/Masters/ExpirationAlerts', {
-      headers: {
-        authorization: this.token,
-        org_id: this.org_id
-      }
-    });
-  }
-
-  getTaskTypes() {
-    return this.http.get<ITaskListModal[]>('https://api-qa.faciliteasy.com/api/v1/Masters/TaskTypes', {
-      headers: {
-        authorization: this.token,
-        org_id: this.org_id
-      }
-    });
-  }
-
   getTeams() {
     return this.http.get<ITaskListModal[]>('https://idp-qa.faciliteasy.com/api/teams', {
       headers: {
@@ -116,12 +98,4 @@ export class TaskService {
     });
   }
 
-  getCheckList() {
-    return this.http.get<ITaskListModal[]>('https://api-qa.faciliteasy.com/api/v1/CheckList', {
-      headers: {
-        authorization: this.token,
-        org_id: this.org_id
-      }
-    });
-  }
 }

@@ -1,37 +1,38 @@
-<div >
-  <div class="mb-3">
+<div class="row">
+  <div class="mb-3 col-4">
     <label class="form-label">Task Name</label>
     <input type="text" class="form-control" [(ngModel)]="taskDetails.name">
   </div>
-  <div class="mb-3">
-    <label class="form-label">Description</label>
-    <textarea class="form-control" [(ngModel)]="taskDetails.description"></textarea>
-  </div>
-  <div class="mb-3">
+  
+  <div class="mb-3 col-4">
     <label class="form-label">Facility</label>
     <select class="form-select form-select-lg mb-3" [(ngModel)]="taskDetails.facilityId">
       <option *ngFor="let facility of facilityList" [value]="facility.id">{{facility.name}}</option>
     </select>
   </div>
-  <div class="mb-3">
+  <div class="mb-3 col-4">
     <label class="form-label">Assets</label>
     <select class="form-select" size="3" [(ngModel)]="taskDetails.AssetId">
       <option *ngFor="let asset of assetList" [value]="asset.assetId">{{asset.assetName}}</option>
     </select>
   </div>
-  <div class="mb-3">
+  <div class="mb-3 col">
+    <label class="form-label">Description</label>
+    <textarea class="form-control" [(ngModel)]="taskDetails.description"></textarea>
+  </div>
+  <div class="mb-3 col-4">
     <label class="form-label">Assigned To</label>
     <select class="form-select" multiple size="3" [(ngModel)]="taskDetails.assignedMembers">
       <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
     </select>
   </div>
-  <div class="mb-3">
+  <div class="mb-3 col-4">
     <label class="form-label">Teams</label>
     <select class="form-select" multiple size="3" [(ngModel)]="taskDetails.assignedTeams">
       <option *ngFor="let team of teams" [value]="team.id">{{team.name}}</option>
     </select>
   </div>
-  <div class="mb-3">
+  <div class="mb-3 col-4">
     <label class="form-label">Priority</label>
     <select class="form-select form-select-lg mb-3" [(ngModel)]="taskDetails.priority">
       <option value=1>High</option>
@@ -39,7 +40,17 @@
   <option value=3>Low</option>
     </select>
   </div>
-  <div class="mb-3">
+  <div class="mb-3 col-4">
+    <label class="form-label">Due Date</label>
+    <input type="date" class="form-control" [(ngModel)]="taskDetails.dueDate">
+  </div>
+  <div class="mb-3 col-4">
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+      <label class="form-check-label" for="flexSwitchCheckDefault">Repeat</label>
+    </div>
+  </div>
+  <div class="mb-3 col-6">
     <div>
     <label class="form-label">Type</label>
     <select class="form-select form-select-lg mb-3" [(ngModel)]="taskDetails.typeId">
@@ -47,21 +58,29 @@
     </select>
     </div>
     <div>
-      <span class="material-symbols-outlined" (click)="openDialog()">
+      <span class="material-symbols-outlined pointer" (click)="openDialog('Task')">
         add_box
       </span>
     </div>
   </div>
-  <div class="mb-3">
-    <label class="form-label">Due Date</label>
-    <input type="date" class="form-control" [(ngModel)]="taskDetails.dueDate">
-  </div>
-  <div class="mb-3">
+  <div class="mb-3 col-6">
+    <div>
     <label class="form-label">Remainder</label>
     <select class="form-select form-select-lg mb-3" [(ngModel)]="taskDetails.remainder">
       <option *ngFor="let remainder of remainders" [value]="remainder.id">{{remainder.name}}</option>
     </select>
   </div>
- 
-  <button type="submit" class="btn btn-primary" (click)="saveTask()">Submit</button>
+    <div>
+      <span class="material-symbols-outlined pointer" (click)="openDialog('Remainder')">
+        add_box
+      </span>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary col-1" (click)="saveTask()"><div class="d-flex"><span class="material-symbols-outlined">
+    save
+    </span>Save</div></button>
+  <button type="button" class="btn btn-outline-secondary mx-2 col-1" (click)="navigateBack()"><div class="d-flex"><span class="material-symbols-outlined">
+    undo
+    </span>Back</div></button>
 </div>
+<app-master-add [type]="masterType" [openDialog]="showDialog" (closeDialogBox)="onClose($event)"></app-master-add>

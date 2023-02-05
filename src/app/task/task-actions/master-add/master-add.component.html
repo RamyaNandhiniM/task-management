@@ -1,0 +1,20 @@
+<app-modal (closDialog)="closeDialog()">
+  <div header>{{title}}</div>
+  <div>
+    <div class="my-3" *ngIf="type=='Task'">
+      <label class="form-label">{{taskModal?.taskName}}</label>
+      <input type="text" class="form-control" [(ngModel)]="taskModal?.payload.name">
+    </div>
+    <div *ngIf="type=='Remainder'">
+    <div class="my-3" >
+      <label class="form-label">{{remaiderModal.alertName}}</label>
+      <input type="text" class="form-control" [(ngModel)]="remaiderModal.payload.name">
+    </div>
+    <div class="my-3" >
+      <label class="form-label">{{remaiderModal.valueName}}</label>
+      <input type="text" class="form-control" [(ngModel)]="remaiderModal.payload.value">
+    </div>
+    </div>
+    <button type="submit" class="btn btn-primary col-1" (click)="saveModalValue()">Save</button>
+  </div>
+</app-modal>

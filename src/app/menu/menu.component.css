@@ -17,11 +17,11 @@ li a {
 }
 
 .active {
-  background-color: #3EB489;
+  background-color: #0d6efd;
   color: white !important;
 }
 
 li a:hover:not(.active) {
-  background-color: #267055;
+  background-color: grey;
   color: white;
 }

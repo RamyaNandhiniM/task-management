@@ -24,13 +24,15 @@
   <tr *ngFor="let task of filteredTaskList" >
     <!-- <td></td> -->
     <td>{{task.taskNumber}}</td>
-    <td>{{task.name | replace:'a':'i'}}</td>
+    <td>{{task.name }}</td>
     <td>{{getUsers(task.assignedTo.users)}}</td>
     <td>{{task.dueDate | date:'dd/MM/yyyy'}}</td>
     <td>{{task.createdDateTime | date:'dd/MM/yyyy'}}</td>
     <td><app-status [text]="task.status" ></app-status></td>
     <td><app-status [text]="task.priority.name"></app-status></td>
-    <td><a (click)="goToDetails(task.id)">More...</a></td>
+    <td><a (click)="goToDetails(task.id)"><span class="material-symbols-outlined pointer">
+      edit
+      </span></a></td>
   </tr>
   </tbody>
 </table>

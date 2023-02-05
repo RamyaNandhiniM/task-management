@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MasterService } from 'src/app/services/master.service';
 import { TaskService } from 'src/app/services/task.service';
 import { ITaskDetailsModal, ITaskPayloadModal } from 'src/app/shared/task-modal';
 
@@ -10,14 +11,14 @@ import { ITaskDetailsModal, ITaskPayloadModal } from 'src/app/shared/task-modal'
 })
 export class TaskActionsComponent implements OnInit {
 
-  constructor(private taskService: TaskService, private route: Router, private router: ActivatedRoute) { }
+  constructor(private taskService: TaskService, private route: Router, private router: ActivatedRoute, private masterService: MasterService) { }
 
   ngOnInit(): void {
     this.taskService.getFacilities().subscribe((res) => this.facilityList = res);
     this.taskService.getAssests().subscribe((res) => this.assetList = res);
-    this.taskService.getRemainders().subscribe((res) => this.remainders = res);
-    this.taskService.getCheckList().subscribe((res) => this.checklists = res);
-    this.taskService.getTaskTypes().subscribe((res) => this.taskTypes = res);
+    this.getRemainders();
+    this.masterService.getCheckList().subscribe((res) => this.checklists = res);
+    this.getTaskTypes();
     this.taskService.getUsers().subscribe((res) => this.users = res);
     this.taskService.getTeams().subscribe((res) => this.teams = res);
 
@@ -51,6 +52,8 @@ export class TaskActionsComponent implements OnInit {
   teams = [];
   users = [];
   checklists = [];
+  masterType = '';
+  showDialog = false;
 
   saveTask() {
     if (window.location.pathname.includes('edit') && this.router.snapshot.paramMap.get('id')) {
@@ -67,10 +70,26 @@ export class TaskActionsComponent implements OnInit {
     }
 
   }
-  openDialog(): void {
-
+  openDialog(type: string): void {
+    this.masterType = type;
+    this.showDialog = true;
+  }
+  onClose(event) {
+    if (event == 'Task') {
+      this.getTaskTypes();
+    }
+    else if (event == 'Remainder') {
+      this.getRemainders();
+    }
+    this.showDialog = false;
   }
 
+  getTaskTypes() {
+    this.masterService.getTaskTypes().subscribe((res) => this.taskTypes = res);
+  }
+  getRemainders() {
+    this.masterService.getRemainders().subscribe((res) => this.remainders = res);
+  }
   convertDetailToPayloadModal(details: ITaskDetailsModal) {
     this.taskDetails.id = details?.id;
     this.taskDetails.name = details.name;
@@ -88,5 +107,8 @@ export class TaskActionsComponent implements OnInit {
     this.taskDetails.dueDate = details.dueDate;
     this.taskDetails.subTasks = details.subTasks;
     this.taskDetails.AssetId = details.asset?.id;
+  }
+  navigateBack(): void {
+    this.route.navigate(['/task/list'])
   }
 }

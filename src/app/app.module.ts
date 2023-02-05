@@ -15,6 +15,7 @@ import { TaskActionsComponent } from './task/task-actions/task-actions.component
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { ModalComponent } from './shared/modal/modal.component';
+import { MasterAddComponent } from './task/task-actions/master-add/master-add.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ModalComponent } from './shared/modal/modal.component';
     TaskActionsComponent,
     HomeComponent,
     MenuComponent,
-    ModalComponent
+    ModalComponent,
+    MasterAddComponent
   ],
   imports: [
     BrowserModule,
