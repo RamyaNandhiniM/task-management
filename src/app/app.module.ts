@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { ModalComponent } from './shared/modal/modal.component';
 import { MasterAddComponent } from './task/task-actions/master-add/master-add.component';
+import { TaskModule } from './task/task.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MasterAddComponent } from './task/task-actions/master-add/master-add.co
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    TaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]

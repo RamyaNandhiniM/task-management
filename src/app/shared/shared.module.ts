@@ -9,18 +9,18 @@ import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [
-    // ReplacePipe,
-    // StatusComponent,
-    // ModalComponent
+    ReplacePipe,
+    StatusComponent,
+    ModalComponent
   ],
   imports: [
-    // ReplacePipe,
-    // StatusComponent,
-    // ModalComponent,
+
     CommonModule
   ],
   exports: [
-
+    ReplacePipe,
+    StatusComponent,
+    ModalComponent
   ]
 })
 export class SharedModule { }

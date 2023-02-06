@@ -26,7 +26,8 @@ import { AppRoutingModule } from '../app-routing.module';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ]
 })
 export class TaskModule { }
