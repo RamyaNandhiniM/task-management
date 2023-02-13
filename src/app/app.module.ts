@@ -16,29 +16,22 @@ import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { ModalComponent } from './shared/modal/modal.component';
 import { MasterAddComponent } from './task/task-actions/master-add/master-add.component';
+import { SharedModule } from './shared/shared.module';
 import { TaskModule } from './task/task.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TaskListComponent,
-    ReplacePipe,
-    StatusComponent,
-    TaskTableComponent,
-    TaskDetailsComponent,
-    TaskPageComponent,
-    TaskActionsComponent,
+
     HomeComponent,
-    MenuComponent,
-    ModalComponent,
-    MasterAddComponent
+    MenuComponent
   ],
   imports: [
+    SharedModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
-    TaskModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

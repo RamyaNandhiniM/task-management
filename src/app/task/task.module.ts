@@ -6,9 +6,9 @@ import { TaskDetailsComponent } from './task-details/task-details.component';
 import { TaskPageComponent } from './task-page.component';
 import { TaskActionsComponent } from './task-actions/task-actions.component';
 import { MasterAddComponent } from './task-actions/master-add/master-add.component';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 
 
@@ -28,6 +28,14 @@ import { AppRoutingModule } from '../app-routing.module';
     HttpClientModule,
     AppRoutingModule,
     SharedModule
+  ],
+  exports: [
+    TaskListComponent,
+    TaskTableComponent,
+    TaskDetailsComponent,
+    TaskPageComponent,
+    TaskActionsComponent,
+    MasterAddComponent
   ]
 })
 export class TaskModule { }
